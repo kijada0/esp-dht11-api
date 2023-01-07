@@ -19,7 +19,7 @@ def getData():
     data_are_not_ready = True
     while data_are_not_ready:
         try:
-            response = requests.get(url, timeout=5).json()
+            response = requests.get(url, timeout=(5, 5), verify=False).json()
             if response["status"] == "OK":
                 data_are_not_ready = False
                 print("Response:\t", response)
@@ -55,6 +55,8 @@ def saveData(data):
 
     line += "\n"
     file.write(line)
+
+    file.close()
 
 main()
 
